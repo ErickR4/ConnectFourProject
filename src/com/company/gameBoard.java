@@ -1,64 +1,11 @@
         package com.company;
         public class gameBoard {
 
-            static boolean checkWinVertical(char _board[][], int _row, int _column, char _currentPiece) {
-                for (int i = 0; i < _board.length - 3; i++) {
-                    if (_board[i][_column] == _currentPiece) {
-
-                            if ((_board[i][_column] == _currentPiece)
-                                    && (_board[i + 1][_column] == _currentPiece)
-                                    && (_board[i + 2][_column] == _currentPiece)
-                                    && (_board[i + 3][_column] == _currentPiece)){
-                                        return true;
-                            }
-
-                    }
-                }
-                return false;
-            }
-            static boolean checkWinHorizontal(char _board[][], int _row, int _column, char _currentPiece) {
-                for (int i = 0; i < _board[_row].length - 3; i++) {
-                            if ((_board[_row][i] == _currentPiece)
-                                    && (_board[_row][i + 1] == _currentPiece)
-                                    && (_board[_row][i + 2] == _currentPiece)
-                                    && (_board[_row][i + 3] == _currentPiece)){
-                                return true;
-                            }
-                }
-                return false;
-            }
-            static boolean checkWinDiagonalUp(char _board[][], int _row, int _column, char _currentPiece) {
-                for (int i = 0; i < _board.length - 3; i++) {
-                    for (int j = 0; j < _board[_row].length - 3; j++) {
-                        if ((_board[i][j] == _currentPiece)
-                                && (_board[i + 1][j + 1] == _currentPiece)
-                                && (_board[i + 2][j + 2] == _currentPiece)
-                                && (_board[i + 3][j + 3] == _currentPiece)){
-                                        return true;
-                        }
-                    }
-                }
-                return false;
-            }
-            static boolean winCheckDiagonalDown(char _board[][], int _row, int _column, char _currentPiece) {
-                for (int i = _board.length - 1; i > 2; i--) {
-                    for (int j = 0; j < _board[_row].length - 3; j++) {
-                        if ((_board[i][j] == _currentPiece)
-                                &&(_board[i - 1][j + 1] == _currentPiece)
-                                &&(_board[i - 2][j + 2] == _currentPiece)
-                                &&(_board[i - 3][j + 3] == _currentPiece)){
-
-                                        return true;
-                        }
-                    }
-                }
-                return false;
-            }
-            static boolean checkFull(char _board[][]) {
+            static boolean checkFull(char board[][]) {
                 int k = 0;
-                for (int i = 0; i < _board.length; i++) {
-                    for (int j = 0; j < _board[i].length; j++) {
-                        if (_board[i][j] != '-') {
+                for (int i = 0; i < board.length; i++) {
+                    for (int j = 0; j < board[i].length; j++) {
+                        if (board[i][j] != '-') {
                             k++;
                         }
                     }
@@ -69,16 +16,71 @@
                     return false;
                 }
             }
-            static void printBoard(final char tempBoard[][]) {
+            static void printBoard(final char Board[][]) {
+                System.out.print((char)27 + "[4m");
+                System.out.println(" 1 2 3 4 5 6 7 ");
+
                 for (int i = 0; i < 6; i++) {
-                    for (int j = 0; j < tempBoard[i].length; j++) {
-                        System.out.print(tempBoard[i][j] + " ");
+                    for (int j = 0; j < Board[i].length; j++) {
+                        System.out.print("|" + Board[i][j]);
+                        if (j == Board.length)
+                            System.out.print("|");
                     }
                     System.out.println();
                 }
-
-
-                System.out.println("_____________\n1 2 3 4 5 6 7");
-                System.out.println("   Columns   \n");
+                System.out.print((char)27 + "[0m");
             }
+
+            static boolean checkWinVertical(char board[][], int row, int column, char currentPiece) {
+                for (int i = 0; i < board.length - 3; i++) {
+                    if (board[i][column] == currentPiece) {
+                            if ((board[i][column] == currentPiece)
+                                    && (board[i + 1][column] == currentPiece)
+                                    && (board[i + 2][column] == currentPiece)
+                                    && (board[i + 3][column] == currentPiece)){
+                                        return true;
+                            }
+                    }
+                }
+                return false;
+            }
+            static boolean checkWinHorizontal(char board[][], int row, int column, char currentPiece) {
+                for (int i = 0; i < board[row].length - 3; i++) {
+                            if ((board[row][i] == currentPiece)
+                                    && (board[row][i + 1] == currentPiece)
+                                    && (board[row][i + 2] == currentPiece)
+                                    && (board[row][i + 3] == currentPiece)){
+                                return true;
+                            }
+                }
+                return false;
+            }
+            static boolean checkWinDiagonalUp(char board[][], int row, int column, char currentPiece) {
+                for (int i = 0; i < board.length - 3; i++) {
+                    for (int j = 0; j < board[row].length - 3; j++) {
+                        if ((board[i][j] == currentPiece)
+                                && (board[i + 1][j + 1] == currentPiece)
+                                && (board[i + 2][j + 2] == currentPiece)
+                                && (board[i + 3][j + 3] == currentPiece)){
+                                        return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            static boolean checkWinDiagonalDown(char board[][], int row, int column, char currentPiece) {
+                for (int i = board.length - 1; i > 2; i--) {
+                    for (int j = 0; j < board[row].length - 3; j++) {
+                        if ((board[i][j] == currentPiece)
+                                &&(board[i - 1][j + 1] == currentPiece)
+                                &&(board[i - 2][j + 2] == currentPiece)
+                                &&(board[i - 3][j + 3] == currentPiece)){
+
+                                        return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
         }

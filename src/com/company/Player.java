@@ -10,9 +10,6 @@ class Player extends Person {
 	 public String getName() {
 			return super.getName();
 		}
-	 public void setPlayerPiece(char playerPiece) {
-	  this.playerPiece = playerPiece;
-	 }
 	 public char getPlayerPiece() {
 	  return this.playerPiece;
 	 }
