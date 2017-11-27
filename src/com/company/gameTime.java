@@ -18,6 +18,6 @@ public class gameTime {
 	public static void getCurrentTime(long currentTime){
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date(currentTime);
-        System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
+        System.out.println(dateFormat.format(date));
 	}
 }

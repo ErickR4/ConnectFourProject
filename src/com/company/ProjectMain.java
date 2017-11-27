@@ -20,7 +20,7 @@ public class ProjectMain {
         System.out.println("1 - Play Connect Four");
         System.out.println("2 - Quit Connect Four");
         System.out.println();
-        System.out.println("Please enter an option: ");
+        System.out.println("Please input an option: ");
 
         int userOption = input.nextInt();
 
@@ -35,39 +35,30 @@ public class ProjectMain {
                     for (char[] row : board) {
                         Arrays.fill(row, '-');
                     }
-                    System.out.println("CONNECT FOUR\n");
-                    /*for (int i = 0; i < 6; i++) {
-                        for (int j = 0; j < board[i].length; j++) {
-                            System.out.print(board[i][j] + " ");
-                        }
-                        System.out.println();
-                    }
 
+                    System.out.println("CONNECT FOUR");
+                    System.out.println("Enter name for Player 1: ");
+                    Player player1 = new Player(input.next(), 'X');
+                    System.out.println("Enter name for Player 2: ");
+                    Player player2 = new Player(input.next(), 'O');
 
-                    System.out.println("_____________\n1 2 3 4 5 6 7");
-                    System.out.println("   Columns   \n");
-                    */
-                    System.out.println("Player 1, enter your name: ");
-                    com.company.Player player1 = new com.company.Player(input.next(), 'X');
-                    System.out.println("Player 2, enter your name: ");
-                    com.company.Player player2 = new com.company.Player(input.next(), 'O');
-
-                    System.out.println((char)27 + "[4m" + "Info:");
+                    System.out.print((char)27 + "[4m" + "Info:");
                     System.out.println("\n" + player1.getName() + " is " + player1.getPlayerPiece());
                     System.out.println(player2.getName() + " is " + player2.getPlayerPiece());
-                    System.out.println("First player who gets four in a row (up/down/diagonally) wins.\n");
+                    System.out.println("First player who get four pieces Vertically or Horizontally or diagonally wins!");
 
-                    System.out.println((char)27 + "[0m");
+                    System.out.print((char)27 + "[0m");
                     gameBoard.printBoard(board);
 
                     boolean win = false;
                     char currentPiece = player2.getPlayerPiece();
-                    int column = 0;
+                    int column;
                     int row = 0;
-                    int i = 0;
-                    long start = com.company.gameTime.setCurrentTime();
+                    int i;
+                    long start = gameTime.setCurrentTime();
 
                     do {
+                        //switch if to play
                         if (currentPiece == player2.getPlayerPiece()) {
                             currentPiece = player1.getPlayerPiece();
                         } else if (currentPiece == player1.getPlayerPiece()) {
@@ -86,44 +77,44 @@ public class ProjectMain {
                         while ((column > 6 || column < 0) || (board[0][column] == 'X' || board[0][column] == 'O')) {
                             System.out.println("Invalid entry. Try again.");
 
-                            if (currentPiece == player1.getPlayerPiece()) {
+                            if (currentPiece == player1.getPlayerPiece())
                                 System.out.println(player1.getName() + ": Place your piece in a column.");
-                            } else if (currentPiece == player2.getPlayerPiece()) {
+
+                            else if (currentPiece == player2.getPlayerPiece())
                                 System.out.println(player2.getName() + ": Place your piece in a column.");
-                            }
+
                             column = input.nextInt() - 1;
-                            System.out.println("\n");
+
                         }
 
                         for (i = 0; i <= 5; i++) {
-                            if (board[i][column] == '-') {
+                            if (board[i][column] == '-')
                                 row = i;
-                            } else {
-                                continue;
-                            }
+                                else
+                                break;
                         }
                         board[row][column] = currentPiece;
 
                         gameBoard.printBoard(board);
 
-                        if (gameBoard.winCheck_UpDn(board, row, column, currentPiece) == true) {
+                        if (gameBoard.checkWinVertical(board, row, column, currentPiece)) {
                             win = true;
-                        } else if (gameBoard.winCheck_LR(board, row, column, currentPiece) == true) {
+                        } else if (gameBoard.checkWinHorizontal(board, row, column, currentPiece)) {
                             win = true;
-                        } else if (gameBoard.winCheck_DiagLRDn(board, row, column, currentPiece) == true) {
+                        } else if (gameBoard.checkWinDiagonalUp(board, row, column, currentPiece)) {
                             win = true;
-                        } else if (gameBoard.winCheck_DiagLRUp(board, row, column, currentPiece) == true) {
-                            win = true;
-                        }
-
-                        if (gameBoard.checkFull(board) == true) {
+                        } else if (gameBoard.winCheckDiagonalDown(board, row, column, currentPiece)) {
                             win = true;
                         }
 
-                    } while (win == false);
+                        if (gameBoard.checkFull(board)) {
+                            win = true;
+                        }
+
+                    } while (!win);
 
                     System.out.println("GAME OVER");
-                    if (gameBoard.checkFull(board) == true) {
+                    if (gameBoard.checkFull(board)) {
                         System.out.println("The board is full.\nThe game is a draw.");
                     } else if (currentPiece == player1.getPlayerPiece()) {
                         System.out.println(player1.getName() + " WINS!\nCongratulations!");
@@ -131,9 +122,9 @@ public class ProjectMain {
                         System.out.println(player2.getName() + " WINS!\nCongratulations!");
                     }
 
-                    long end = com.company.gameTime.setCurrentTime();
-                    com.company.gameTime.totalTime(end, start);
-                    com.company.gameTime.getCurrentTime(end);
+                    long end = gameTime.setCurrentTime();
+                    gameTime.totalTime(end, start);
+                    gameTime.getCurrentTime(end);
 
                     System.out.println("1 - Play Again");
                     System.out.println("2 - Quit Connect Four");
