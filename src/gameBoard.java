@@ -1,5 +1,5 @@
 package com.company;
-public class winCheck {
+public class gameBoard {
 
     static boolean winCheck_UpDn(char _board[][], int _row, int _column, char _currentPiece) {
         for (int i = 0; i < _board.length - 3; i++) {
@@ -75,5 +75,17 @@ public class winCheck {
         } else {
             return false;
         }
+    }
+    static void printBoard(final char tempBoard[][]) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < tempBoard[i].length; j++) {
+                System.out.print(tempBoard[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+
+        System.out.println("_____________\n1 2 3 4 5 6 7");
+        System.out.println("   Columns   \n");
     }
 }
