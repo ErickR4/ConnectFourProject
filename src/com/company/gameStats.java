@@ -1,6 +1,6 @@
 package com.company;
 import java.sql.Date;                           //19) Java Library
-import java.text.*;                             //
+import java.text.*;
 
 public class gameStats {                        //18) encapsulation
 
