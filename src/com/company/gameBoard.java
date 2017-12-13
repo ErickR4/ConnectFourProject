@@ -1,6 +1,7 @@
         package com.company;
-        public class gameBoard {
+        public class gameBoard {                    //12) multiple Classes
 
+            static int BoardTotal = 42;                                              //20) static varible
             static boolean checkFull(char board[][]) {
                 int k = 0;
                 for (int i = 0; i < board.length; i++) {
@@ -10,12 +11,12 @@
                         }
                     }
                 }
-                if (k == 42) {
+                if (k == BoardTotal) {
                     return true;
                 } else {
                     return false;
                 }
-            }
+            }                           //20) static methods
             static void printBoard(final char Board[][]) {
                 System.out.print((char)27 + "[4m");
                 System.out.println(" 1 2 3 4 5 6 7 ");
@@ -43,7 +44,7 @@
                     }
                 }
                 return false;
-            }   //Method Overloading
+            }   // 10) Method Overloading
             static boolean checkWinVerticalHorizontal(char board[][], int row, int column, char currentPiece) {
                 for (int i = 0; i < board[row].length - 3; i++) {
                             if ((board[row][i] == currentPiece)
@@ -54,7 +55,7 @@
                             }
                 }
                 return false;
-            } //Method Overloading
+            } //4) conditional operators
             static boolean checkWinDiagonalUp(char board[][], int row, char currentPiece) {
                 for (int i = 0; i < board.length - 3; i++) {
                     for (int j = 0; j < board[row].length - 3; j++) {
