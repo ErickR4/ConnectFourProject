@@ -47,8 +47,9 @@ public class ProjectMain {
 
                     char currentPiece = player2.getPlayerPiece(); //piece that will be placed
 
-                    if (Math.random()* 99 < 50) {                           //5) Operators arithmetical
-                        currentPiece = player1.getPlayerPiece();            //7) Math Class
+                    double RandomNum = Math.random()* 99;                   //7) Math Class
+                    if (RandomNum < 50) {                           //5) Operators arithmetical
+                        currentPiece = player1.getPlayerPiece();
                     }
 
                     int column;                                              //2) Variables
