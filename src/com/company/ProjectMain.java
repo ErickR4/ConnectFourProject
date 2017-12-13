@@ -1,11 +1,10 @@
 package com.company;
 import java.util.*;
 
-//@SuppressWarnings("resource")
-
 public class ProjectMain {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+
 
         System.out.println("Welcome to Connect 4!");
         System.out.println("Menu");
@@ -17,13 +16,11 @@ public class ProjectMain {
         int userOption = input.nextInt();
 
         while (!(userOption == 0)) {
+            long start = gameStats.setCurrentTime();
 
             switch (userOption) {
 
                 case 1:
-
-
-
                     System.out.println("CONNECT FOUR");
                     System.out.println("Enter name for Player 1: ");
                     Player player1 = new Player(input.next(), 'X');
@@ -97,13 +94,13 @@ public class ProjectMain {
                         gameBoard.printBoard(board);
 
                         //Win conditions
-                        if (gameBoard.checkWinVertical(board, row, column, currentPiece)) {
+                        if (gameBoard.checkWinVerticalHorizontal(board, column, currentPiece)) {
                             win = true;
-                        } else if (gameBoard.checkWinHorizontal(board, row, column, currentPiece)) {
+                        } else if (gameBoard.checkWinVerticalHorizontal(board, row, column, currentPiece)) {
                             win = true;
-                        } else if (gameBoard.checkWinDiagonalUp(board, row, column, currentPiece)) {
+                        } else if (gameBoard.checkWinDiagonalUp(board, row, currentPiece)) {
                             win = true;
-                        } else if (gameBoard.checkWinDiagonalDown(board, row, column, currentPiece)) {
+                        } else if (gameBoard.checkWinDiagonalDown(board, row, currentPiece)) {
                             win = true;
                         }
 
@@ -113,7 +110,7 @@ public class ProjectMain {
 
                     } while (!win);
 
-                    //Print who won, the player whos turn it is will be delcared winner
+                    //Print who won, the player whos turn it is will be declared winner
                     System.out.println("GAME OVER");
                     if (gameBoard.checkFull(board)) {
                         System.out.println("No more possible moves!");
@@ -124,6 +121,9 @@ public class ProjectMain {
                         System.out.println(player2.getName() + " WINS!");
                     }
 
+                    long end = gameStats.setCurrentTime();
+                    gameStats.totalTime(end, start);
+                    gameStats.getCurrentTime(end);
                     //replay
                     System.out.println("1 - Play Again");
                     System.out.println("2 - Quit Connect Four");

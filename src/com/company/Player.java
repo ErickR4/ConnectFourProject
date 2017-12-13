@@ -4,6 +4,7 @@ class Player extends Person {
 	 private char playerPiece;
 
 	 public Player(String name, char playerPiece){
+	 	 name.trim();
 		 super.setName(name);
 		 this.playerPiece = playerPiece;
 	 }

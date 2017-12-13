@@ -31,7 +31,7 @@
                 System.out.print((char)27 + "[0m");
             }
 
-            static boolean checkWinVertical(char board[][], int row, int column, char currentPiece) {
+            static boolean checkWinVerticalHorizontal(char board[][], int column, char currentPiece) {
                 for (int i = 0; i < board.length - 3; i++) {
                     if (board[i][column] == currentPiece) {
                             if ((board[i][column] == currentPiece)
@@ -43,8 +43,8 @@
                     }
                 }
                 return false;
-            }
-            static boolean checkWinHorizontal(char board[][], int row, int column, char currentPiece) {
+            }   //Method Overloading
+            static boolean checkWinVerticalHorizontal(char board[][], int row, int column, char currentPiece) {
                 for (int i = 0; i < board[row].length - 3; i++) {
                             if ((board[row][i] == currentPiece)
                                     && (board[row][i + 1] == currentPiece)
@@ -54,8 +54,8 @@
                             }
                 }
                 return false;
-            }
-            static boolean checkWinDiagonalUp(char board[][], int row, int column, char currentPiece) {
+            } //Method Overloading
+            static boolean checkWinDiagonalUp(char board[][], int row, char currentPiece) {
                 for (int i = 0; i < board.length - 3; i++) {
                     for (int j = 0; j < board[row].length - 3; j++) {
                         if ((board[i][j] == currentPiece)
@@ -68,7 +68,7 @@
                 }
                 return false;
             }
-            static boolean checkWinDiagonalDown(char board[][], int row, int column, char currentPiece) {
+            static boolean checkWinDiagonalDown(char board[][], int row, char currentPiece) {
                 for (int i = board.length - 1; i > 2; i--) {
                     for (int j = 0; j < board[row].length - 3; j++) {
                         if ((board[i][j] == currentPiece)
