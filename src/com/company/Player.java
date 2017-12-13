@@ -1,7 +1,7 @@
 package com.company;
 
 class Player extends Person {                           //17) Inheritance
-	 private char playerPiece;                          //22) Modifiera
+	 private char playerPiece;                          //22) Modifier
 
 	 public Player(String name, char playerPiece){      //14) constuctor
 	 	 name.trim();                                   //6) String Class
